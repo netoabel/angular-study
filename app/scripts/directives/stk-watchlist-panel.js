@@ -32,8 +32,8 @@ angular.module('stockDogApp')
         };
 
         $scope.gotoList = function(listId) {
-          $location.path('watchlist/' + listId)
-        }
+          $location.path('watchlist/' + listId);
+        };
       }
     };
   });
