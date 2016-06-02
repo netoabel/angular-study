@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('stockDogApp')
-  .directive('stkWatchlistPanel', function($location, $modal, WatchlistService) {
+  .directive('stkWatchlistPanel', function($location, $modal, $routeParams, WatchlistService) {
     return {
       templateUrl: 'views/templates/watchlist-panel.html',
       restrict: 'E',
       scope: {},
       link: function postLink($scope) {
         $scope.watchlist = {};
+        $scope.currentList = $routeParams.listId;
         var addListModal = $modal({
           scope: $scope,
           template: 'views/templates/addlist-modal.html',
@@ -29,6 +30,10 @@ angular.module('stockDogApp')
           WatchlistService.remove(list);
           $location.path('/');
         };
+
+        $scope.gotoList = function(listId) {
+          $location.path('watchlist/' + listId)
+        }
       }
     };
   });
